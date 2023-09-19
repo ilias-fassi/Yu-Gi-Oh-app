@@ -1,7 +1,6 @@
-# Yu-Gi-Oh-app
-Web app to support your Yu-Gi-Oh dueling experience
+# Yu-Gi-Oh app
+Web app to support your Yu-Gi-Oh card game experience
 
-This web app is a support for the YU-GI-OH! card game.
 You can :
 - manage and track life points by clicking on the buttons to increase, decrease, halve or reset players' life points.
 - manage duel time by clicking start/pause/reset buttons.
