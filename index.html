@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Yu-Gi-Oh! - Life Points Calculator</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/styles.css"/>
+    <link rel="icon" type="image/png" sizes="16x16" href="img/icon.png">
+    <script type="text/javascript" src="scripts/script.js"></script>
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- RESET LP -->
+        <div id="reset_LP"><button class="reset" id="reset" onclick="reset()"><strong id="reset_lp_text">RESET LP</strong></button></div>
+
+        <!-- LOGO MINUS & PLUS -->
+        <div id="logo_minus"><img class="P1logo_moins" src="img/logo_moins.png" width="50"></div>
+        <div id="logo_plus"><img class="P1logo_plus" src="img/logo_plus.png" width="50"></div>       
+        
+        <!-- PLAYER ONE -->
+        <div id="player_one_pic"><img src="img/Jaden_485px.jpg" width="100"><br></div>
+        <div id="player_one_LP"><h1 class="p1_LP" id="p1_LP" value="8000"> 8000 </h1></div>
+        <div id="player_one_minus_1000"><button class="P1minus" id="P1-1000" onclick="p1_gain(-1000)"><h1 class="damages">-1000</h1></button></div>
+        <div id="player_one_minus_500"><button class="P1minus" id="P1-500" onclick="p1_gain(-500)"><h1 class="damages">-500</h1></button></div>
+        <div id="player_one_minus_100"><button class="P1minus" id="P1-100" onclick="p1_gain(-100)"><h1 class="damages">-100</h1></button></div>
+        <div id="player_one_minus_50"><button class="P1minus" id="P1-50" onclick="p1_gain(-50)"><h1 class="damages">-50</h1></button></div>
+        <div id="player_one_half"><button id="P1half" onclick="p1_half()"><strong>HALF</strong></button></div>
+        <div id="player_one_plus_1000"><button class="P1plus" id="P1+1000" onclick="p1_gain(1000)"><h1 class="damages">+1000</h1></button></div>
+        <div id="player_one_plus_500"><button class="P1plus" id="P1+500" onclick="p1_gain(500)"><h1 class="damages">+500</h1></button></div>
+        <div id="player_one_plus_100"><button class="P1plus" id="P1+100" onclick="p1_gain(100)"><h1 class="damages">+100</h1></button></div>
+        <div id="player_one_plus_50"><button class="P1plus" id="P1+50" onclick="p1_gain(50)"><h1 class="damages">+50</h1></button></div>
+
+        <!-- PLAYER TWO -->
+        <div id="player_two_LP"><h1 class="p2_LP" id="p2_LP" value="8000"> 8000 </h1></div>
+        <div id="player_two_pic"><img class="p2pic" src="img/Jesse_485px.jpg" width="100"></div>
+        <div id="player_two_minus_1000"><button class="P2minus" id="P2-1000" onclick="p2_gain(-1000)"><h1 class="damages">-1000</h1></button></div>
+        <div id="player_two_minus_500"><button class="P2minus" id="P2-500" onclick="p2_gain(-500)"><h1 class="damages">-500</h1></button></div>
+        <div id="player_two_minus_100"><button class="P2minus" id="P2-100" onclick="p2_gain(-100)"><h1 class="damages">-100</h1></button></div>
+        <div id="player_two_minus_50"><button class="P2minus" id="P2-50" onclick="p2_gain(-50)"><h1 class="damages">-50</h1></button></div>
+        <div id="player_two_half"><button id="P2half" onclick="p2_half()"><strong>HALF</strong></button></div>
+        <div id="player_two_plus_1000"><button class="P2plus" id="P2+1000" onclick="p2_gain(1000)"><h1 class="damages">+1000</h1></button></div>
+        <div id="player_two_plus_500"><button class="P2plus" id="P2+500" onclick="p2_gain(500)"><h1 class="damages">+500</h1></button></div>
+        <div id="player_two_plus_100"><button class="P2plus" id="P2+100" onclick="p2_gain(100)"><h1 class="damages">+100</h1></button></div>
+        <div id="player_two_plus_50"><button class="P2plus" id="P2+50" onclick="p2_gain(50)"><h1 class="damages">+50</h1></button></div>
+        
+        <!-- TIMER -->
+        <div id="timer_wrapper">
+            <div id="timer_value">
+                <strong class="timer" id="chrono">40:00</strong>
+            </div>
+
+            <div id="timer_pause_play">
+                <img src="img/pause_play_icon.png" width="40" id="img_pause_play" class="timer_button" onclick="timer_pause_play()"></img>
+            </div>
+
+            <div id="timer_reset">
+                <img src="img/reset_icon.png" width="40" id="img_reset" class="timer_img" onclick="timer_reset()"></img>
+            </div>
+        </div>
+        <script>
+            var temps=2400; //40*60s
+            const timerElement = document.getElementById("chrono"); //const : ne va pas être modifié, lecture seule
+            function diminuerTemps() {
+                let minutes = parseInt(temps / 60, 10);
+                let secondes = parseInt(temps % 60, 10);
+                if (minutes < 10) {minutes = "0" + minutes;}
+                if (secondes < 10) {secondes = "0" + secondes;}
+                timerElement.innerText = minutes + ":" + secondes;
+                if (temps <= 0) {temps=0;}
+                else {temps--;}
+            }
+            var action = 'not_started_yet';
+            function timer_start (){
+                let interval = setInterval(function(){
+                    if (action == 'active') {
+                        diminuerTemps();
+                    }
+                    if (action == 'reset'){
+                        action = 'reseted';
+                    }
+                    if (action == 'reseted'){
+                        temps=2400;
+                        minutes = parseInt(temps / 60, 10);
+                        secondes = parseInt(temps % 60, 10);
+                        if (minutes < 10) {minutes = "0" + minutes;}
+                        if (secondes < 10) {secondes = "0" + secondes;}
+                        timerElement.innerText = minutes + ":" + secondes;
+                    }
+                    if (action == 'pause'){
+                        action = 'none';
+                    }
+                    if (action == 'none') return 0;
+                }
+                , 1000);
+            }
+            function timer_pause_play (){
+                if (action == 'not_started_yet') {
+                    action = 'active';
+                    timer_start();
+                }
+                else if (action == 'active') action = 'pause';
+                else action = 'active';
+            }
+            function timer_reset (){
+                action = 'reset';
+            }
+
+        </script>
+        
+        <!-- DICE ROLL -->
+        <div id="dice_roll">
+            <div id="dice_roll_res">DICE ROLL</div> 
+            <img id="dice_pic" src="img/dice.png" onclick="dice_roll()" width="60">
+        </div>
+
+        <!-- COIN TOSS -->
+        <div id="coin_toss">
+            <div id="coin_toss_res">COIN TOSS</div> 
+            <img id="coin_toss_pic" src="img/coin_toss.png" onclick="coin_toss()" width="60">
+        </div>
+
+        <!-- TOKEN STATS -->
+        <div id="token_stats">
+            <img id="nib" src="img/nibiru_618px.jpg" width="70">
+            <div class="nib_txt">
+                <h2 class="title">TOKEN STATS</h2>
+                <input type="text" class="box">
+                <em class="atk">ATK /</em>
+                <input type="text" class="box">
+                <em class="def">DEF</em>
+            </div>
+        </div>
+
+        <!-- LOGS -->
+        <table id="logs">
+            <thead>
+                <tr>
+                    <th colspan="2">LOGS</th>
+                </tr>
+                <th colspan="2">
+                    <button id="logs_clear" onclick="clear_logs()">CLEAR LOGS</button>
+                </th>
+                <tr>
+                    <th colspan="1">PLAYER ONE</th>
+                    <th colspan="1">PLAYER TWO</th>
+                </tr>
+            </thead>
+            <tbody>
+                <td id="logs_player_one"></td>
+                <td id="logs_player_two"></td>
+            </tbody>
+        </table>
+
+        <!-- PROBABILITY CALCULATOR -->
+        <table id="proba_calc">
+            <thead>
+                <tr><th colspan="2">PROBABILITY CALCULATOR</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Deck size</td>
+                    <td><input class="p_c_input" type="number" id="D" value=40><br></td>
+                </tr>
+                <tr>
+                    <td>Hand size</td>
+                    <td><input class="p_c_input" type="number" id="H" value=5><br></td>
+                </tr>
+                <tr>
+                    <td>Quantity/deck</td>
+                    <td><input class="p_c_input" type="number" id="Amt" value=3><br></td>
+                </tr>
+                <tr>
+                    <td>Min/hand</td>
+                    <td><input class="p_c_input" type="number" id="Min" value=1><br></td>
+                </tr>
+                <tr>
+                    <td>Max/hand</td>
+                    <td><input class="p_c_input" type="number" id="Max" value=3><br></td>
+                </tr>
+                <tr>
+                    <th colspan="1"><button onclick="aux()">Calculer</button></th>
+                    <th colspan="1"><p id="res">resultat</p></th>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+
+</body>
+
+</html>
