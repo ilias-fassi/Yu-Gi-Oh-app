@@ -1,5 +1,6 @@
 body {
     background-image: url('../img/background_1400x900.jpg');
+     /* background-color: #dddcdc; */
 }
 
 #wrapper {
@@ -31,13 +32,13 @@ body {
     border: 2px solid rgb(0, 0, 0);
     /* background: linear-gradient(to bottom left,#ffffff 50%, #f0f0f0 50%); */
     background: #333;
-    opacity: 50%;
+    opacity: 70%;
     color: #dadada;
     font-size: 14px;
 }
 .reset:hover {
     font-size: 16px;
-    transition-duration: 300ms;
+    transition-duration: 200ms;
     filter: drop-shadow(3px 3px 3px #666666);
     /* background: linear-gradient(to bottom left,#ffffff 50%, #e7e7e7 50%); */
     /* color: white; */
@@ -112,13 +113,13 @@ body {
     height: 70px;
     border-radius: 0%;
     background: #333;
-    opacity: 50%;
+    opacity: 70%;
     color: #dadada;
     font-size: 16px;
 }
 #P1half:hover {
     font-size: 18px;
-    transition-duration: 300ms;
+    transition-duration: 200ms;
 }
 #P1half:active {
     font-size: 16px;
@@ -199,13 +200,13 @@ body {
     height: 70px;
     border-radius: 0%;
     background: #333;
-    opacity: 50%;
+    opacity: 70%;
     color: #dadada;
     font-size: 16px;
 }
 #P2half:hover {
     font-size: 18px;
-    transition-duration: 300ms;
+    transition-duration: 200ms;
 }
 #P2half:active {
     font-size: 16px;
@@ -459,7 +460,7 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
   margin: 0;
 }
 /* Firefox */
-input[type=number] {
+/* input[type=number] {
   -moz-appearance: textfield;
-}
+} */
 
